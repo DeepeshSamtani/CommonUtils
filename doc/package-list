@@ -1,0 +1,13 @@
+com.bt.npm.netrep.npmcommonutils.changelistener
+com.bt.npm.netrep.npmcommonutils.comparator
+com.bt.npm.netrep.npmcommonutils.comparator.file
+com.bt.npm.netrep.npmcommonutils.constants
+com.bt.npm.netrep.npmcommonutils.exception
+com.bt.npm.netrep.npmcommonutils.executor
+com.bt.npm.netrep.npmcommonutils.logger
+com.bt.npm.netrep.npmcommonutils.model
+com.bt.npm.netrep.npmcommonutils.parser.csv
+com.bt.npm.netrep.npmcommonutils.parser.excel
+com.bt.npm.netrep.npmcommonutils.parser.xml
+com.bt.npm.netrep.npmcommonutils.util
+com.bt.npm.netrep.npmcommonutils.writer

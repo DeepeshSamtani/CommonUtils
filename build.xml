@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ======================================================================                                                   
+     SDK build
+     ANT script file to build SDK modules.
+                   
+     AP                                                                
+     ====================================================================== -->
+<project name="NPM Common utilities" default="build" basedir=".">
+	<echo message="STARTING THE BUILD" />
+
+	<!-- Loading pre configured project properties -->
+	<property file="build.properties" />
+	<property name="lib.dir" value="${base.dir}/lib/"/>
+	<property name="config.dir" value="${base.dir}/config/"/>
+	
+	<target name="clean">		
+		<echo message="Cleaning the workspace" />
+		<delete dir="${artifacts.path}" />
+	</target>
+	
+	<target name="classpath" description="setting the classpath">
+		<echo message="setting the classpath" />
+    	<path id="classpath">
+    		<fileset dir="${lib.dir}" includes="**/*.jar" />
+    		<fileset dir="${config.dir}" includes="**/*"  />
+    	</path>
+	</target>
+
+	<!-- ======================================Compiling source classes============================================ -->
+	<target name="compile" depends="classpath" description="description">
+		<mkdir dir="${app.temp}" />
+		<javac srcdir="${src.dir}" classpathref="classpath" destdir="${app.temp}" debug="on" />
+	</target>
+
+	<!-- ====================================== Packaging ============================================ -->
+	<target name="module_jar" description="creating the jar">
+		<mkdir dir="${artifacts.path}" />
+		<jar destfile="${artifacts.path}/${module.name}.jar">
+			<fileset dir="${app.temp}" id="module_jar">
+				<include name="**/*.class" />
+				<include name="**/*" />				
+			</fileset>			
+			<!--<fileset dir="${lib.dir}" includes="**/*.jar" />-->
+			<!--<fileset dir="${config.dir}" includes="**/*"  />-->
+		</jar>
+		<!--<copy todir="${config.out.dir}" overwrite="true">
+			<fileset dir="${config.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${lib.out.dir}" overwrite="true">
+			<fileset dir="${lib.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>-->
+		<delete dir="${app.temp}" />
+	</target> 
+	
+	<!-- ======================================Creating jar============================================ -->
+
+	<target name="build" depends="clean, compile, classpath, module_jar" description="build the project">		
+		<echo message="building module" />		
+	</target>
+</project>
